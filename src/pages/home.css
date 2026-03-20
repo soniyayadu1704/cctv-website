@@ -1,0 +1,94 @@
+/* General Page Layout */
+.home-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1e272e;
+  color: white;
+  border-radius: 10px;
+  padding: 40px 20px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.hero-text h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.hero-text p {
+  font-size: 18px;
+}
+
+.hero-image img {
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+/* Products Section */
+.products h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Product Card */
+.card {
+  background: #f1f2f6;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background: white;
+}
+
+.card-info {
+  padding: 10px;
+}
+
+.card-info h3 {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.card-info p {
+  font-size: 14px;
+  color: #555;
+}
+
+.card-info button {
+  background: #00cec9;
+  border: none;
+  padding: 8px 12px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.card-info button:hover {
+  background: #0984e3;
+}

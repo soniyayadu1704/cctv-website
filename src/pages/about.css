@@ -1,0 +1,48 @@
+.about {
+  font-family: Arial, sans-serif;
+}
+
+/* Hero Section */
+.about-hero {
+  background: url("https://images.unsplash.com/photo-1581092918056-0c4c3acd3789");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.about-hero h1 {
+  font-size: 36px;
+}
+
+/* Sections */
+.about-section {
+  padding: 20px;
+  text-align: center;
+}
+
+.about-section h2 {
+  color: #2c3e50;
+}
+
+/* Features */
+.about-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.feature-card {
+  background: #f1f2f6;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.feature-card:hover {
+  transform: scale(1.05);
+  background: #dfe6e9;
+}
