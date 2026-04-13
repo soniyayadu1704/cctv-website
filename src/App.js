@@ -7,25 +7,41 @@ import About from "./pages/About";
 import Products from "./pages/Products";
 import Cartpage from "./pages/Cartpage";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Footer from "./components/Footer";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
 
-  // Calculate total cart count
-  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  let cartCount = 0;
+
+  for (let i = 0; i < cartItems.length; i++) {
+    cartCount = cartCount + cartItems[i].quantity;
+  }
 
   return (
     <BrowserRouter>
-      {/* Pass cart state to header */}
+      {/* Header */}
       <Header cartCount={cartCount} cartItems={cartItems} />
 
       <Routes>
-        <Route path="/" element={<Home cartItems={cartItems} setCartItems={setCartItems} />} />
+        <Route
+          path="/"
+          element={<Home cartItems={cartItems} setCartItems={setCartItems} />}
+        />
         <Route path="/about" element={<About />} />
-        <Route path="/products" element={<Products cartItems={cartItems} setCartItems={setCartItems} />} />
-        <Route path="/cart" element={<Cartpage cartItems={cartItems} setCartItems={setCartItems} />} />
+        <Route
+          path="/products"
+          element={<Products cartItems={cartItems} setCartItems={setCartItems} />}
+        />
+        <Route
+          path="/cart"
+          element={<Cartpage cartItems={cartItems} setCartItems={setCartItems} />}
+        />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
+      <Footer/>
     </BrowserRouter>
   );
 }

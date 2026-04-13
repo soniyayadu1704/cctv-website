@@ -1,72 +1,76 @@
 import React, { useState } from "react";
-import Backbutton from "../components/Backbutton";
-import "./signup.css";
+import "./login.css";
+import bgimage from "../image/bgimage.jpg";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
-  const [name, setName] = useState("");
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSignup = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const exists = users.find((user) => user.email === email);
+
+    if (exists) {
+      alert("User already exists ❌");
       return;
     }
-    // For demo, just alert the values
-    alert(`Name: ${name}\nEmail: ${email}\nPassword: ${password}`);
+
+    users.push({ email, password });
+    localStorage.setItem("users", JSON.stringify(users));
+
+    alert("Signup Successful ✅");
+    navigate("/login");
+  };
+
+  const bgStyle = {
+    backgroundImage: `url(${bgimage})`,
   };
 
   return (
-    <div className="signup-page">
-      <Backbutton />
+    <div className="login-page" style={bgStyle}>
+      <div className="overlay">
+        <div className="login-card">
+          <h2>📝 Create Account</h2>
 
-      <div className="signup-card">
-        <h2>Create Your Account</h2>
-        <form onSubmit={handleSignup}>
-          <label>Full Name</label>
-          <input
-            type="text"
-            placeholder="Enter your full name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
+          <form onSubmit={handleSignup}>
+            <input
+              type="email"
+              placeholder="Enter Email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
 
-          <label>Email</label>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+            <div className="password-container">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Create Password"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <span
+                className="toggle-icon"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
 
-          <label>Password</label>
-          <input
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+            <button type="submit">Sign Up</button>
+          </form>
 
-          <label>Confirm Password</label>
-          <input
-            type="password"
-            placeholder="Confirm your password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-
-          <button type="submit">Sign Up</button>
-        </form>
-
-        <p className="login-text">
-          Already have an account? <a href="/login">Login</a>
-        </p>
+          <p className="signup-text">
+            Already have an account? <Link to="/login">Login</Link>
+          </p>
+        </div>
       </div>
     </div>
   );

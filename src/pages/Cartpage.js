@@ -1,38 +1,28 @@
-import React, { useState } from "react";
-import Backbutton from "../components/Backbutton";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 import "./cart.css";
 
-function Cartpage() {
-  // Dummy cart items
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      title: "CCTV Dome Camera HD",
-      price: 2999,
-      image: "https://via.placeholder.com/150x100.png?text=CCTV+Dome",
-      quantity: 1,
-    },
-    {
-      id: 2,
-      title: "Wireless Bullet Camera",
-      price: 4999,
-      image: "https://via.placeholder.com/150x100.png?text=Bullet+Camera",
-      quantity: 2,
-    },
-  ]);
+function Cartpage({ cartItems, setCartItems }) {
+  const navigate = useNavigate();
 
+  // Change quantity
   const handleQuantityChange = (id, quantity) => {
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity: Number(quantity) } : item
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Number(quantity) }
+          : item
       )
     );
   };
 
+  // Remove item
   const handleRemove = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+    setCartItems(cartItems.filter((item) => item.id !== id));
   };
 
+  // Total price
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -40,22 +30,37 @@ function Cartpage() {
 
   return (
     <div className="cart-page">
-      <Backbutton />
-      <h1>Your Shopping Cart</h1>
+
+
+      <div className="back-nav" onClick={() => navigate("/")}>
+          <FaArrowLeft /> <span>Continue Shopping</span>
+      </div>
+
+      <h1>Your Cart</h1>
 
       {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <div className="empty-cart">
+          <h2>🛒 Your Cart is Empty</h2>
+          <p>Add some products to get started</p>
+          <button onClick={() => navigate("/")}>
+            Go Shopping
+          </button>
+        </div>
       ) : (
         <>
+          {/* CART ITEMS */}
           <div className="cart-items">
             {cartItems.map((item) => (
               <div className="cart-item" key={item.id}>
                 <img src={item.image} alt={item.title} />
+
                 <div className="cart-item-details">
                   <h3>{item.title}</h3>
                   <p>₹ {item.price}</p>
+
+                  {/* Quantity */}
                   <label>
-                    Quantity:{" "}
+                    Qty:
                     <input
                       type="number"
                       min="1"
@@ -65,6 +70,8 @@ function Cartpage() {
                       }
                     />
                   </label>
+
+                  {/* Remove */}
                   <button
                     className="remove-btn"
                     onClick={() => handleRemove(item.id)}
@@ -76,9 +83,12 @@ function Cartpage() {
             ))}
           </div>
 
+          {/* SUMMARY */}
           <div className="cart-summary">
             <h2>Total: ₹ {totalPrice}</h2>
-            <button className="checkout-btn">Proceed to Checkout</button>
+            <button className="checkout-btn">
+              Proceed to Checkout
+            </button>
           </div>
         </>
       )}
