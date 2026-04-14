@@ -17,8 +17,8 @@
   margin-top: 10px;
   padding: 30px;
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
+  background: transparent;
+  backdrop-filter: none;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
   color: white;
   text-align: center;
@@ -43,6 +43,7 @@
   border-radius: 8px;
   border: none;
   outline: none;
+  background-color: transparent;
   box-sizing: border-box; /* IMPORTANT */
 }
 

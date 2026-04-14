@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./login.css";
-import bgimage from "../image/bgimage.jpg";
+import bgimage from "../image/bgimage.jpeg";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-
 import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {

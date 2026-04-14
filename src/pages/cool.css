@@ -1,0 +1,182 @@
+/* Background */
+.bg {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding-top: 80px;
+}
+
+/* Main lens form */
+.lens-form {
+  position: absolute;
+  top: 43%;
+  left: 59%;
+  transform: translate(-50%, -50%);
+
+  width: clamp(220px, 22vw, 320px);
+  padding: 25px;
+
+  border-radius: 50%;
+  background: transparent;
+
+  text-align: center;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  justify-content: center;
+  align-items: center;
+}
+
+/* Heading */
+h3 {
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  font-size: clamp(14px, 1.5vw, 20px);
+  color: white;
+}
+
+/* Input container */
+.input-box {
+  position: relative;
+  width: 100%;
+}
+
+/* Inputs */
+.input-box input {
+  width: 100%;
+  padding: 10px 35px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+
+  background: transparent;
+  color: white;
+
+  font-size: clamp(12px, 1vw, 14px);
+  box-sizing: border-box;
+}
+
+/* Placeholder */
+.input-box input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+/* Icons */
+.icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  cursor: pointer;
+  font-size: clamp(12px, 1vw, 16px);
+}
+
+.icon.left {
+  left: 10px;
+}
+
+.icon.right {
+  right: 10px;
+}
+
+/*  (used for BOTH selection + login) */
+button {
+  width: 100%;
+  padding: 10px;
+  color: white;
+
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+
+  font-weight: bold;
+  cursor: pointer;
+
+  box-shadow: 0 0 10px silver;
+
+  font-size: clamp(12px, 1vw, 14px);
+}
+
+.login-btn {
+  display: block;
+  width: 95%;
+  padding: 10px;
+
+  background: #00ffa3;
+  color: black;
+
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+
+  border-radius: 10px;
+
+  
+  box-shadow: 
+    0 0 5px #00ffa3;
+    
+
+  transition: all 0.3s ease;
+}
+
+/* Links */
+.links {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  font-size: clamp(10px, 1vw, 12px);
+}
+
+.links span {
+  cursor: pointer;
+}
+
+.links span:hover {
+  text-decoration: underline;
+}
+
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 8px #79b49f;
+}
+
+/* 🔥 Special for first screen (2 buttons spacing) */
+.lens-form button {
+  margin-top: 5px;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .lens-form {
+    top: 48%;
+    left: 55%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .lens-form {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 75vw;
+    max-width: 320px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .lens-form {
+    width: 85vw;
+    padding: 15px;
+  }
+
+  h3 {
+    font-size: 14px;
+  }
+}
