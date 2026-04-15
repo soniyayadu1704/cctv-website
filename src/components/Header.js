@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { FaCamera } from "react-icons/fa";
 import "./header.css";
 
 function Header({ cartCount = 0, cartItems = [] }) {
@@ -11,20 +12,20 @@ function Header({ cartCount = 0, cartItems = [] }) {
     if (cartItems.length === 0) {
       toast.info("Your cart is empty!", { position: "top-right", autoClose: 2000 });
     } else {
-      // Build mini cart content
       const content = (
         <div>
           {cartItems.map(item => (
             <div key={item.id} style={{ display: 'flex', marginBottom: '5px', gap: '10px', alignItems: 'center' }}>
-              <img src={item.image} alt={item.title} width="40" height="40" style={{ objectFit: 'cover', borderRadius: '4px' }} />
+              <img src={item.image} alt={item.title} width="40" height="40"
+                style={{ objectFit: 'cover', borderRadius: '4px' }} />
               <div>
                 <p style={{ margin: 0, fontSize: '13px' }}>{item.title}</p>
                 <p style={{ margin: 0, fontSize: '12px' }}>₹{item.price} x{item.quantity}</p>
               </div>
             </div>
           ))}
-          <button 
-            onClick={() => { toast.dismiss(); navigate("/cart"); }} 
+          <button
+            onClick={() => { toast.dismiss(); navigate("/cart"); }}
             style={{
               marginTop: '5px',
               width: '100%',
@@ -42,14 +43,23 @@ function Header({ cartCount = 0, cartItems = [] }) {
         </div>
       );
 
-      toast.info(content, { position: "top-right", autoClose: false, closeOnClick: false, draggable: false });
+      toast.info(content, {
+        position: "top-right",
+        autoClose: 5000,
+        closeOnClick: false,
+        draggable: false
+      });
     }
   };
 
   return (
     <header className="header">
-      <div className="logo">
-        <h1>CCTV<span className="highlight">Pro</span></h1>
+
+      <div className="logo" onClick={() => navigate("/")}>
+        <FaCamera className="logo-icon" />
+        <h1>
+        CCTV<span className="neon-pro">Pro</span>
+        </h1>
       </div>
 
       <nav className="nav-links">
@@ -69,8 +79,20 @@ function Header({ cartCount = 0, cartItems = [] }) {
       </div>
 
       <div className="contact-info">
-        <p>📞 +91 98765 43210</p>
-        <p>✉️ support@cctv.com</p>
+
+        <a href="tel:+917017733646" className="contact-link">
+          <span>📞</span> +91 7017733646
+        </a>
+
+        <a
+          href={`mailto:support@cctv.com?subject=CCTV Inquiry&body=${encodeURIComponent(
+            "Hello, I want to know more about your services."
+          )}`}
+          className="contact-link"
+        >
+          <span>📧</span> support@cctv.com
+        </a>
+
       </div>
 
       <ToastContainer />

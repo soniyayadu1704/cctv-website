@@ -9,9 +9,11 @@ import {
   FaEye,
   FaEyeSlash
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -27,17 +29,16 @@ function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // Handle input
+  
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Match check
+
   const isMatch =
     form.confirmPassword &&
     form.password === form.confirmPassword;
 
-  // Validation
   const validate = () => {
     let newErrors = {};
 
@@ -70,14 +71,19 @@ function Signup() {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Submit with smart greeting
-  const handleSubmit = () => {
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // stop instant navigation
+
     if (validate()) {
+
+      localStorage.setItem("user", JSON.stringify(form));
+
       setShowGreeting(true);
 
-      // Auto hide after 3 sec
       setTimeout(() => {
         setShowGreeting(false);
+        navigate("/"); // redirect after 3 sec
       }, 3000);
     }
   };
@@ -85,51 +91,67 @@ function Signup() {
   return (
     <div className="bg" style={{ backgroundImage: `url(${bgimage})` }}>
 
-      {/* 🔥 SMART GREETING */}
+     
       {showGreeting && form.firstName && (
         <div className="greeting">
-          Welcome {form.firstName}
+          👋 Welcome {form.firstName} {form.lastName}
         </div>
       )}
 
       <div className="lens-form">
         <h3>CREATE ACCOUNT</h3>
 
-        {/* First Name */}
         <div className="input-box">
           <FaUser className="icon left" />
-          <input name="firstName" placeholder="First Name" onChange={handleChange} />
+          <input
+            name="firstName"
+            placeholder="First Name"
+            value={form.firstName}
+            onChange={handleChange}
+          />
           <small>{errors.firstName}</small>
         </div>
 
-        {/* Last Name */}
         <div className="input-box">
           <FaUser className="icon left" />
-          <input name="lastName" placeholder="Last Name" onChange={handleChange} />
+          <input
+            name="lastName"
+            placeholder="Last Name"
+            value={form.lastName}
+            onChange={handleChange}
+          />
           <small>{errors.lastName}</small>
         </div>
 
-        {/* Email */}
         <div className="input-box">
           <FaEnvelope className="icon left" />
-          <input name="email" placeholder="Email Address" onChange={handleChange} />
+          <input
+            name="email"
+            placeholder="Email Address"
+            value={form.email}
+            onChange={handleChange}
+          />
           <small>{errors.email}</small>
         </div>
 
-        {/* Phone */}
         <div className="input-box">
           <FaPhone className="icon left" />
-          <input name="phone" placeholder="Phone Number" onChange={handleChange} />
+          <input
+            name="phone"
+            placeholder="Phone Number"
+            value={form.phone}
+            onChange={handleChange}
+          />
           <small>{errors.phone}</small>
         </div>
 
-        {/* Password */}
         <div className="input-box">
           <FaLock className="icon left" />
           <input
             name="password"
             type={showPassword ? "text" : "password"}
             placeholder="Password"
+            value={form.password}
             onChange={handleChange}
           />
           <span
@@ -141,13 +163,13 @@ function Signup() {
           <small>{errors.password}</small>
         </div>
 
-        {/* Confirm Password */}
         <div className="input-box">
           <FaLock className="icon left" />
           <input
             name="confirmPassword"
             type={showConfirmPassword ? "text" : "password"}
             placeholder="Confirm Password"
+            value={form.confirmPassword}
             onChange={handleChange}
           />
           <span
@@ -159,19 +181,18 @@ function Signup() {
             {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
 
-          {/* ✅ Tick */}
+          
           {isMatch && <span className="tick">✔</span>}
 
-          {/* ❌ Error */}
+          
           {!isMatch && form.confirmPassword && (
-            <small>Passwords do not match</small>
+            <h6>Passwords do not match</h6>
           )}
         </div>
 
         <Link to="/" className="login-btn" onClick={handleSubmit}>
           SIGN UP
         </Link>
-        
       </div>
     </div>
   );

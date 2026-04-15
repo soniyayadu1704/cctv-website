@@ -2,6 +2,7 @@
 .bg {
   height: 100vh;
   width: 100%;
+  
 
   background-size: cover;
   background-position: center;
@@ -30,14 +31,14 @@
   background-position: right center;
 }
 
-/* Keep UI above overlay */
+
 .lens-form,
 .admin-card {
   position: relative;
   z-index: 1;
 }
 
-/* ===== USER (Lens UI) ===== */
+
 .lens-form {
   position: absolute;
   top: 43%;
@@ -63,20 +64,19 @@
 
 /* Heading */
  h3 {
-  width: 80%;          /* 🔥 match inputs */
-  margin: 0 auto;      /* 🔥 center */
+  width: 80%;         
+  margin: 0 auto;      
   text-align: center;
 }
 
-/* ===== INPUTS ===== */
+
 /* INPUT BOX */
 .input-box {
   position: relative;
-  width: 80%;        /* 🔥 same as button */
-  margin: 0 auto;    /* 🔥 center it */
+  width: 80%;       
+  margin: 0 auto;   
 }
 
-/* INPUT FIELD */
 .input-box input {
   width: 100%;
   padding: 10px 35px;
@@ -89,7 +89,7 @@
 
   font-size: clamp(12px, 1vw, 14px);
 
-  box-sizing: border-box;   /* 🔥 THIS FIXES EVERYTHING */
+  box-sizing: border-box;   
 }
 
 
@@ -98,7 +98,6 @@
   color: rgba(255,255,255,0.6);
 }
 
-/* Icons */
 .icon {
   position: absolute;
   top: 50%;
@@ -110,7 +109,6 @@
 .icon.left { left: 10px; }
 .icon.right { right: 10px; cursor: pointer; }
 
-/* ===== BUTTONS ===== */
 button {
   width: 100%;
   padding: 10px;
@@ -149,7 +147,7 @@ button {
 
   box-shadow: 0 0 5px #00ffa3;
 
-  box-sizing: border-box;   /* 🔥 MATCH INPUT */
+  box-sizing: border-box;   
 }
 
 .login-btn:hover {
@@ -157,26 +155,71 @@ button {
 }
 
 
+
 .links {
   display: flex;
-  justify-content: space-between;
-  width: 95%;
-  font-size: clamp(10px, 1vw, 12px);
+  flex-direction: column;
+  width: 90%;
+  font-size: clamp(11px, 1vw, 13px);
+  margin-top: 12px;
 }
+
+
+.top-links {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+
 
 .links a {
   text-decoration: none;
-  color: inherit;
+  color: rgba(255,255,255,0.85);
+  transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .links a:hover {
-  text-decoration: underline;
+  color: #00ffc3;
+  text-shadow: 0 0 8px #00ffc3;
+}
+
+
+.back-link {
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  align-self: flex-center;
+  color: rgba(255,255,255,0.8);
+
+  display: inline-block;
+  transition: 0.3s;
+}
+
+
+.back-link::before {
+  content: "←";
+  display: inline-block;
+  margin-right: 6px;
+  transition: transform 0.3s ease;
+}
+
+.back-link:hover::before {
+  transform: translateX(-5px);
+}
+
+
+.back-link:hover {
+  color: #00ffc3;
+  text-shadow: 0 0 8px #00ffc3;
 }
 
 /* Focus */
 input:focus {
   outline: none;
   box-shadow: 0 0 8px #79b49f;
+
 }
 
 

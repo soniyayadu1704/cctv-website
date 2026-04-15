@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Products from "./pages/Products";
+import Contact from "./pages/Contact";
 import Cartpage from "./pages/Cartpage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -41,6 +42,8 @@ function App() {
           path="/products"
           element={<Products cartItems={cartItems} setCartItems={setCartItems} />}
         />
+        <Route path="/contact" element={<Contact />} />
+
         <Route
           path="/cart"
           element={<Cartpage cartItems={cartItems} setCartItems={setCartItems} />}

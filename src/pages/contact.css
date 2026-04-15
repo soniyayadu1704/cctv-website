@@ -1,0 +1,95 @@
+.contact-page {
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #0f2027, #000000);
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+/* Title */
+.title {
+  font-size: 32px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px #00ffc3;
+}
+
+.subtitle {
+  margin-bottom: 40px;
+  color: rgba(255,255,255,0.7);
+}
+
+/* Container */
+.contact-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* Cards */
+.contact-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  padding: 25px;
+  width: 250px;
+
+  backdrop-filter: blur(10px);
+
+  transition: 0.4s;
+  position: relative;
+}
+
+/* Hover effect */
+.contact-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 0 25px #00ffc3;
+}
+
+/* Icon animation */
+.icon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 10px;
+  animation: pulse 2s infinite;
+}
+
+/* Button */
+.contact-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 15px;
+
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+
+  transition: 0.3s;
+}
+
+/* Button colors */
+.whatsapp {
+  background: #25d366;
+  color: black;
+}
+
+.email {
+  background: #0984e3;
+}
+
+.call {
+  background: #fdcb6e;
+  color: black;
+}
+
+/* Hover glow */
+.contact-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px currentColor;
+}
+
+/* Animation */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}

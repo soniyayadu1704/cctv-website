@@ -1,7 +1,7 @@
 import React from "react";
 import "./footer.css";
 import { Link } from "react-router-dom";
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaTwitter, FaPhoneAlt, FaEnvelope, FaCamera } from "react-icons/fa";
 
 function Footer() {
   return (
@@ -10,7 +10,10 @@ function Footer() {
 
         {/* LOGO / ABOUT */}
         <div className="footer-section">
-          <h2>CCTV<span className="highlight">Pro</span></h2>
+          <h2 className="footer-logo">
+            <FaCamera className="footer-logo-icon" />
+            CCTV<span className="highlight">Pro</span>
+          </h2>
           <p>
             Providing high-quality CCTV cameras for home & business security.
           </p>
@@ -25,11 +28,22 @@ function Footer() {
           <Link to="/contact">Contact</Link>
         </div>
 
-        {/* CONTACT */}
+        {/* CONTACT (FIXED STRUCTURE) */}
         <div className="footer-section">
           <h3>Contact</h3>
-          <p>📞 +91 98765 43210</p>
-          <p>✉️ support@cctvpro.com</p>
+
+          <a href="tel:+917017733646" className="contact-link">
+            <FaPhoneAlt /> +91 7017733646
+          </a>
+
+          <a
+            href={`mailto:support@cctv.com?subject=CCTV Inquiry&body=${encodeURIComponent(
+              "Hello, I want to know more about your services."
+            )}`}
+            className="contact-link"
+          >
+            <FaEnvelope /> support@cctv.com
+          </a>
         </div>
 
         {/* SOCIAL */}

@@ -1,4 +1,3 @@
-
 .header {
     display: flex;
     justify-content: space-between;
@@ -7,15 +6,13 @@
     padding: 15px 40px;
     flex-wrap: wrap;
 
-    
-   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    background: linear-gradient(135deg, #0781b6, #203a43, #2c5364);
 
     color: white;
     font-family: 'Orbitron', sans-serif;
 
     box-shadow: 0 0 20px rgba(0, 255, 200, 0.2);
 }
-
 
 .logo h1 {
     font-size: 26px;
@@ -27,7 +24,34 @@
     color: #00ffc3;
     text-shadow: 0 0 10px #00ffc3;
 }
+.neon-pro {
+    color: #00ffc3;
 
+    text-shadow:
+        0 0 5px #00ffc3,
+        0 0 10px #00ffc3,
+        0 0 20px #00ffc3,
+        0 0 40px #00ffc3;
+
+    animation: neonGlow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neonGlow {
+    from {
+        text-shadow:
+            0 0 5px #00ffc3,
+            0 0 10px #00ffc3,
+            0 0 20px #00ffc3;
+    }
+
+    to {
+        text-shadow:
+            0 0 10px #00ffc3,
+            0 0 20px #00ffc3,
+            0 0 40px #00ffc3,
+            0 0 80px #00ffc3;
+    }
+}
 .nav-links {
     display: flex;
     gap: 25px;
@@ -35,14 +59,11 @@
 }
 
 .nav-links a {
-    color: rgba(255,255,255,0.8);
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
-    font-weight: 500;
     position: relative;
-    padding: 5px 0;
     transition: 0.3s;
 }
-
 
 .nav-links a::after {
     content: '';
@@ -53,7 +74,6 @@
     left: 0;
     bottom: 0;
     transition: 0.3s;
-    box-shadow: 0 0 10px #00ffc3;
 }
 
 .nav-links a:hover {
@@ -64,28 +84,21 @@
     width: 100%;
 }
 
-/* RIGHT SECTION */
 .header-right {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-
 .login-btn {
     padding: 6px 18px;
-    font-size: 15px;
-
     border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
 
     color: #00ffc3;
     border: 1px solid #00ffc3;
-    background: transparent;
+    text-decoration: none;
 
     transition: 0.3s;
-
     box-shadow: 0 0 5px #00ffc3;
 }
 
@@ -95,53 +108,72 @@
 
     box-shadow:
         0 0 10px #00ffc3,
-        0 0 20px #336c5e,
-        0 0 40px #3f9d87;
+        0 0 20px #00ffc3;
 
     transform: scale(1.05);
 }
-
 
 .cart-icon {
     position: relative;
     font-size: 26px;
     cursor: pointer;
-
-    transition: 0.3s;
 }
 
 .cart-icon:hover {
     color: #00ffc3;
-    text-shadow: 0 0 10px #00ffc3;
 }
-
 
 .cart-count {
     position: absolute;
     top: -8px;
     right: -10px;
 
-    background: #ff3b3b;
+    background: red;
     color: white;
 
     font-size: 11px;
-    font-weight: bold;
-
     border-radius: 50%;
     padding: 2px 6px;
-
-    box-shadow: 0 0 10px red;
 }
-
 
 .contact-info {
-    text-align: right;
-    font-size: 12px;
-    color: rgba(255,255,255,0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
 }
 
-.contact-info p {
-    margin: 2px 0;
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 14px;
+
+    padding: 4px 8px;
+    border-radius: 6px;
+
+    transition: all 0.3s ease;
+}
+
+
+.contact-link:hover {
+    color: #00ffc3;
+    background: rgba(0, 255, 195, 0.08);
+    transform: translateX(-3px);
+    text-shadow: 0 0 8px #00ffc3;
+}
+
+
+.contact-link span {
+    transition: transform 0.3s ease;
+}
+
+.contact-link:hover span {
+    transform: scale(1.2) rotate(-5deg);
 }
 
 
@@ -155,9 +187,5 @@
     .nav-links {
         flex-wrap: wrap;
         gap: 15px;
-    }
-
-    .contact-info {
-        text-align: left;
     }
 }
