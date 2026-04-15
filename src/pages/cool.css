@@ -1,17 +1,47 @@
-/* Background */
+
 .bg {
   height: 100vh;
+  width: 100%;
+
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+
   position: relative;
-  padding-top: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
 }
 
-/* Main lens form */
+
+.bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 0;
+}
+
+/* Special positioning for admin image */
+.bg.admin-bg {
+  background-position: right center;
+}
+
+/* Keep UI above overlay */
+.lens-form,
+.admin-card {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== USER (Lens UI) ===== */
 .lens-form {
   position: absolute;
   top: 43%;
-  left: 59%;
+  left: 60%;
   transform: translate(-50%, -50%);
 
   width: clamp(220px, 22vw, 320px);
@@ -32,34 +62,38 @@
 }
 
 /* Heading */
-h3 {
-  margin-bottom: 10px;
-  letter-spacing: 1px;
-  font-size: clamp(14px, 1.5vw, 20px);
-  color: white;
+ h3 {
+  width: 80%;          /* 🔥 match inputs */
+  margin: 0 auto;      /* 🔥 center */
+  text-align: center;
 }
 
-/* Input container */
+/* ===== INPUTS ===== */
+/* INPUT BOX */
 .input-box {
   position: relative;
-  width: 100%;
+  width: 80%;        /* 🔥 same as button */
+  margin: 0 auto;    /* 🔥 center it */
 }
 
-/* Inputs */
+/* INPUT FIELD */
 .input-box input {
   width: 100%;
   padding: 10px 35px;
-  border-radius: 10px;
+
+  border-radius: 5px;
   border: 1px solid rgba(255,255,255,0.2);
 
   background: transparent;
   color: white;
 
   font-size: clamp(12px, 1vw, 14px);
-  box-sizing: border-box;
+
+  box-sizing: border-box;   /* 🔥 THIS FIXES EVERYTHING */
 }
 
-/* Placeholder */
+
+
 .input-box input::placeholder {
   color: rgba(255,255,255,0.6);
 }
@@ -70,25 +104,21 @@ h3 {
   top: 50%;
   transform: translateY(-50%);
   color: white;
-  cursor: pointer;
   font-size: clamp(12px, 1vw, 16px);
 }
 
-.icon.left {
-  left: 10px;
-}
+.icon.left { left: 10px; }
+.icon.right { right: 10px; cursor: pointer; }
 
-.icon.right {
-  right: 10px;
-}
-
-/*  (used for BOTH selection + login) */
+/* ===== BUTTONS ===== */
 button {
   width: 100%;
   padding: 10px;
-  color: white;
+  
 
+  color: white;
   background: transparent;
+
   border: none;
   border-radius: 10px;
 
@@ -100,9 +130,12 @@ button {
   font-size: clamp(12px, 1vw, 14px);
 }
 
+
 .login-btn {
   display: block;
-  width: 95%;
+  width: 80%;
+  margin: 0 auto;
+
   padding: 10px;
 
   background: #00ffa3;
@@ -112,17 +145,18 @@ button {
   text-decoration: none;
   font-weight: bold;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
-  
-  box-shadow: 
-    0 0 5px #00ffa3;
-    
+  box-shadow: 0 0 5px #00ffa3;
 
-  transition: all 0.3s ease;
+  box-sizing: border-box;   /* 🔥 MATCH INPUT */
 }
 
-/* Links */
+.login-btn:hover {
+  transform: scale(1.03);
+}
+
+
 .links {
   display: flex;
   justify-content: space-between;
@@ -130,53 +164,154 @@ button {
   font-size: clamp(10px, 1vw, 12px);
 }
 
-.links span {
-  cursor: pointer;
+.links a {
+  text-decoration: none;
+  color: inherit;
 }
 
-.links span:hover {
+.links a:hover {
   text-decoration: underline;
 }
 
-
+/* Focus */
 input:focus {
   outline: none;
   box-shadow: 0 0 8px #79b49f;
 }
 
-/* 🔥 Special for first screen (2 buttons spacing) */
-.lens-form button {
-  margin-top: 5px;
+
+.admin-card {
+  position: absolute;
+  top: 50%;
+  right: 8%;
+  transform: translateY(-50%);
+
+  width: 350px;
+  padding: 30px;
+
+  border-radius: 12px;
+
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(0, 255, 200, 0.3);
+
+  box-shadow: 
+    0 0 25px rgba(0, 255, 200, 0.3),
+    inset 0 0 10px rgba(0, 255, 200, 0.2);
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  color: #00ffd0;
 }
 
-/* Tablet */
+
+.admin-card h2 {
+  text-align: center;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.admin-card h3 {
+  text-align: center;
+  font-size: 16px;
+  color: #ccc;
+}
+
+
+.admin-card .input-box {
+  width: 77%;
+}
+
+.admin-card input {
+  width: 100%;
+  padding: 12px 40px;
+
+  border-radius: 8px;
+  border: 1px solid rgba(0, 255, 200, 0.5);
+
+  background: transparent;
+  color: white;
+}
+
+
+.admin-card .a{
+  width: 100%;
+  padding: 12px;
+
+  background: #00ff88;
+  color: black;
+
+  border-radius: 8px;
+
+  box-shadow: 
+    0 0 10px #00ff88,
+    0 0 20px rgba(0,255,136,0.5);
+}
+
+.admin-card .a:hover {
+  transform: scale(1.05);
+  background: #00cc66;
+}
+
+/* Admin links */
+.admin-card .links {
+  display: flex;
+  justify-content: space-around; /* important according to spaceand pushes left & right */
+  align-items: center;
+  width: 100%;
+}
+
+.admin-card .links span {
+  font-size: 12px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.admin-card .links span:hover {
+  color: #00ffd0;
+}
+
+
 @media (max-width: 900px) {
   .lens-form {
-    top: 48%;
     left: 55%;
   }
-}
 
-/* Mobile */
-@media (max-width: 768px) {
-  .lens-form {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 75vw;
-    max-width: 320px;
+  .admin-card {
+    right: 5%;
   }
 }
 
-/* Small mobile */
-@media (max-width: 480px) {
-  .lens-form {
+@media (max-width: 768px) {
+  .lens-form,
+  .admin-card {
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
     width: 85vw;
+  }
+
+  .bg {
+    background-position: center;
+  }
+
+  .bg.admin-bg {
+    background-position: right;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .lens-form,
+  .admin-card {
+    width: 90vw;
     padding: 15px;
   }
 
-  h3 {
-    font-size: 14px;
+  .bg.admin-bg {
+    background-position: 70% center;
   }
 }

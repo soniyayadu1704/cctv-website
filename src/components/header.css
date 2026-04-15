@@ -1,4 +1,4 @@
-/* 🔥 MAIN HEADER */
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -16,7 +16,7 @@
     box-shadow: 0 0 20px rgba(0, 255, 200, 0.2);
 }
 
-/* LOGO */
+
 .logo h1 {
     font-size: 26px;
     margin: 0;
@@ -28,7 +28,6 @@
     text-shadow: 0 0 10px #00ffc3;
 }
 
-/* NAV LINKS */
 .nav-links {
     display: flex;
     gap: 25px;
@@ -102,7 +101,7 @@
     transform: scale(1.05);
 }
 
-/* CART */
+
 .cart-icon {
     position: relative;
     font-size: 26px;
@@ -116,7 +115,7 @@
     text-shadow: 0 0 10px #00ffc3;
 }
 
-/* CART COUNT */
+
 .cart-count {
     position: absolute;
     top: -8px;
@@ -134,7 +133,7 @@
     box-shadow: 0 0 10px red;
 }
 
-/* CONTACT INFO */
+
 .contact-info {
     text-align: right;
     font-size: 12px;
@@ -145,7 +144,7 @@
     margin: 2px 0;
 }
 
-/* 🔥 RESPONSIVE */
+
 @media (max-width: 900px) {
     .header {
         flex-direction: column;
