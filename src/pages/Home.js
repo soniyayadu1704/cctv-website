@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import "./home.css";
 
 function Home({ cartItems, setCartItems }) {
@@ -32,7 +33,7 @@ function Home({ cartItems, setCartItems }) {
     return () => clearInterval(interval);
   }, [images.length]);
 
-  // ✅ ADD TO CART LOGIC
+  // ✅ ADD TO CART WITH TOAST
   const handleAddToCart = (product) => {
     const exists = cartItems.find((item) => item.id === product.id);
 
@@ -44,13 +45,36 @@ function Home({ cartItems, setCartItems }) {
             : item
         )
       );
+
+      toast.success(`${product.title.slice(0, 25)}... quantity increased 🛒`, {
+        position: "top-right",
+        autoClose: 2000,
+        style: {
+          background: "#0f2027",
+          color: "#00ffc3",
+          boxShadow: "0 0 10px #00ffc3"
+        }
+      });
+
     } else {
       setCartItems([...cartItems, { ...product, quantity: 1 }]);
+
+      toast.success(`${product.title.slice(0, 25)}... added to cart 🛒`, {
+        position: "top-right",
+        autoClose: 2000,
+        style: {
+          background: "#0f2027",
+          color: "#00ffc3",
+          boxShadow: "0 0 10px #00ffc3"
+        }
+      });
     }
   };
 
   return (
     <div className="home-container">
+
+      {/* HERO */}
       <section className="hero">
         <div className="hero-text">
           <h1>Secure Your Home & Business</h1>
@@ -62,6 +86,7 @@ function Home({ cartItems, setCartItems }) {
         </div>
       </section>
 
+      {/* PRODUCTS */}
       <section className="products">
         <h2>Our CCTV Cameras</h2>
 
@@ -74,14 +99,17 @@ function Home({ cartItems, setCartItems }) {
                 <img src={item.image} alt={item.title} />
                 <h3>{item.title}</h3>
                 <p>₹ {item.price}</p>
+
                 <button onClick={() => handleAddToCart(item)}>
                   Add to Cart
                 </button>
+
               </div>
             ))}
           </div>
         )}
       </section>
+
     </div>
   );
 }

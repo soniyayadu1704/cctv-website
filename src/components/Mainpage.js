@@ -1,21 +1,11 @@
-import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import "./mainpage.css"; // optional CSS for layout
-
 function Mainpage({ PageComponent }) {
   return (
-    <div className="layout">
-      {/* Header */}
-      <Header />
+    <div className="flex flex-col min-h-screen">
 
-      {/* Main Content */}
-      <main className="main-content">
+      <main className="flex-1 p-5">
         <PageComponent />
       </main>
 
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }
